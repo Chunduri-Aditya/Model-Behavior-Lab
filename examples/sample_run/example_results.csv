@@ -1,0 +1,3 @@
+run_id,model,test_id,category,variant_group,repeat_idx,final_score,latency_ms,failure_tags,output_preview
+20260106_025634,phi3:3.8b,reasoning-001,reasoning,,0,0.0,9472,exact_match_failed,"Yes, based on the given statements that ""all bloopers are rattlers"" and ""all rattlers are louvers,"" we can deduce using transitive property that if A is B and B is C (A->C), then A must also be C. The"
+20260106_025634,mistral:7b,reasoning-001,reasoning,,0,1.0,4349,,Yes

@@ -1,0 +1,29 @@
+{
+  "overall_ranking": [
+    {
+      "model": "mistral:7b",
+      "weighted_score": 1.0
+    },
+    {
+      "model": "phi3:3.8b",
+      "weighted_score": 0.0
+    }
+  ],
+  "best_per_category": {
+    "reasoning": {
+      "model": "mistral:7b",
+      "score": 1.0
+    }
+  },
+  "deployment_recommendations": [
+    "**mistral:7b**: Best for reasoning"
+  ],
+  "use_cases": {
+    "mistral:7b": [
+      {
+        "use_case": "Analytical tasks and problem-solving",
+        "rationale": "Strong reasoning accuracy (1.00)"
+      }
+    ]
+  }
+}

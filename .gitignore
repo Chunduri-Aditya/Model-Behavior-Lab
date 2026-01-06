@@ -1,5 +1,8 @@
 __pycache__/
 *.pyc
 venv/
+.venv/
 .ipynb_checkpoints/
+.DS_Store
 data/results.json
+data/runs/

@@ -1,0 +1,20 @@
+{
+  "models": ["phi3:3.8b", "mistral:7b", "samantha-mistral:7b"],
+  "suite_path": "prompts/suites/core_suite.json",
+  "sampling": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "seed": 42,
+    "max_tokens": 512
+  },
+  "repeats": 5,
+  "timeout_s": 90,
+  "cache_outputs": true,
+  "judge_model": "mistral:7b",
+  "judge_sampling": {
+    "temperature": 0.0,
+    "seed": 7,
+    "max_tokens": 512
+  }
+}

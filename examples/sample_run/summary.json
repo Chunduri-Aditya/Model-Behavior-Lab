@@ -1,0 +1,179 @@
+{
+  "run_id": "20260106_025634",
+  "timestamp": "2026-01-06T02:56:34.708549",
+  "git_commit": "b2f8626750ccb052e9fa3e3deafb3bfc28e609f6",
+  "config": {
+    "models": [
+      "phi3:3.8b",
+      "mistral:7b"
+    ],
+    "suite_path": "prompts/suites/minimal_test.json",
+    "sampling": {
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 100
+    },
+    "repeats": 1,
+    "timeout_s": 30,
+    "cache_outputs": false,
+    "judge_model": "mistral:7b",
+    "judge_sampling": {
+      "temperature": 0.0,
+      "seed": 7,
+      "max_tokens": 100
+    }
+  },
+  "total_runs": 2,
+  "models": {
+    "phi3:3.8b": {
+      "total_runs": 1,
+      "mean_score": 0.0,
+      "std_score": 0.0,
+      "mean_latency_ms": 9472.0,
+      "categories": {
+        "reasoning": {
+          "mean_score": 0.0,
+          "std_score": 0.0,
+          "total_runs": 1
+        }
+      }
+    },
+    "mistral:7b": {
+      "total_runs": 1,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "mean_latency_ms": 4349.0,
+      "categories": {
+        "reasoning": {
+          "mean_score": 1.0,
+          "std_score": 0.0,
+          "total_runs": 1
+        }
+      }
+    }
+  },
+  "categories": {
+    "reasoning": {
+      "mean_score": 0.5,
+      "std_score": 0.5,
+      "total_runs": 2
+    }
+  },
+  "overall": {
+    "mean_score": 0.5,
+    "std_score": 0.5,
+    "total_runs": 2
+  },
+  "consistency": {
+    "per_model_category": {},
+    "per_variant_group": {},
+    "overall_consistency": {}
+  },
+  "failure_modes": {
+    "per_model": {
+      "phi3:3.8b": {
+        "failure_tags": {
+          "exact_match_failed": {
+            "count": 1,
+            "frequency": 1.0,
+            "avg_score_when_present": 0.0
+          }
+        },
+        "total_failures": 1,
+        "failure_rate": 1.0
+      }
+    },
+    "per_category": {
+      "reasoning": {
+        "failure_tags": {
+          "exact_match_failed": {
+            "count": 1,
+            "frequency": 0.5
+          }
+        },
+        "total_failures": 1,
+        "failure_rate": 0.5
+      }
+    },
+    "systematic_failures": {
+      "phi3:3.8b:reasoning": {
+        "exact_match_failed": {
+          "frequency": 1.0,
+          "count": 1,
+          "total_tests": 1
+        }
+      }
+    },
+    "sporadic_failures": {},
+    "top_failure_tags": {
+      "phi3:3.8b": [
+        {
+          "tag": "exact_match_failed",
+          "count": 1,
+          "frequency": 1.0
+        }
+      ]
+    },
+    "worst_tests": {
+      "mistral:7b": [
+        {
+          "test_id": "reasoning-001",
+          "avg_score": 1.0,
+          "runs": 1
+        }
+      ],
+      "phi3:3.8b": [
+        {
+          "test_id": "reasoning-001",
+          "avg_score": 0.0,
+          "runs": 1
+        }
+      ]
+    }
+  },
+  "tradeoffs": {
+    "per_model_tradeoffs": {
+      "phi3:3.8b": {
+        "reasoning": 0.0
+      },
+      "mistral:7b": {
+        "reasoning": 1.0
+      }
+    },
+    "correlations": {},
+    "strengths_weaknesses": {
+      "phi3:3.8b": {
+        "strengths": [],
+        "weaknesses": [
+          "reasoning"
+        ],
+        "scores": {
+          "reasoning": 0.0
+        }
+      },
+      "mistral:7b": {
+        "strengths": [
+          "reasoning"
+        ],
+        "weaknesses": [],
+        "scores": {
+          "reasoning": 1.0
+        }
+      }
+    },
+    "specific_tradeoffs": {
+      "reasoning_vs_hallucination": {
+        "correlation": 0.0,
+        "interpretation": "no relationship"
+      },
+      "code_vs_hallucination": {
+        "correlation": 0.0,
+        "interpretation": "no relationship"
+      },
+      "emotion_vs_reasoning": {
+        "correlation": 0.0,
+        "interpretation": "no relationship"
+      }
+    }
+  }
+}
