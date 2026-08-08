@@ -112,28 +112,23 @@ Please provide a score from 0.0 to 1.0, where:
 
 Respond with ONLY a number between 0.0 and 1.0, nothing else."""
 
-    try:
-        result = judge_runner(judge_prompt, judge_model, judge_sampling, timeout_s=30)
-        judge_output = result["output"]
-        
-        # Extract numeric score
-        numbers = re.findall(r'0?\.\d+|1\.0|\d+\.\d+', judge_output)
-        if numbers:
-            score = float(numbers[0])
-            score = max(0.0, min(1.0, score))  # Clamp to [0, 1]
-            return score
-        else:
-            # Fallback: check for keywords
-            judge_lower = judge_output.lower()
-            if "correct" in judge_lower or "perfect" in judge_lower or "1.0" in judge_output:
-                return 1.0
-            elif "partial" in judge_lower or "0.5" in judge_output:
-                return 0.5
-            else:
-                return 0.0
-    except Exception as e:
-        # Fallback to heuristic if judge fails
+    result = judge_runner(judge_prompt, judge_model, judge_sampling, timeout_s=30)
+    judge_output = result["output"]
+
+    # Extract numeric score
+    numbers = re.findall(r'0?\.\d+|1\.0|\d+\.\d+', judge_output)
+    if numbers:
+        score = float(numbers[0])
+        return max(0.0, min(1.0, score))  # Clamp to [0, 1]
+
+    # Fallback: check for keywords (judge answered in words, not a number)
+    judge_lower = judge_output.lower()
+    if "correct" in judge_lower or "perfect" in judge_lower or "1.0" in judge_output:
+        return 1.0
+    elif "partial" in judge_lower or "0.5" in judge_output:
         return 0.5
+    else:
+        return 0.0
 
 
 def extract_python_code(text):

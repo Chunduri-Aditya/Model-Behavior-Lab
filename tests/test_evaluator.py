@@ -4,6 +4,7 @@ Tests for evaluator module.
 
 import pytest
 from analyzers.evaluator import (
+    evaluate,
     evaluate_exact_match,
     evaluate_numeric_tolerance,
     evaluate_contains,
@@ -119,6 +120,29 @@ def test_evaluate_python_exec_simple():
     incorrect_code = "def add(a, b):\n    return a - b"
     score = evaluate_python_exec(incorrect_code, test_case, {"timeout_seconds": 5})
     assert score == 0.0
+
+
+def test_evaluate_llm_judge_failure_is_tagged_not_silent():
+    """A judge_runner exception must surface as a tagged evaluation error, not a
+    silent 0.5 score indistinguishable from a genuine partial-credit judgment."""
+
+    def failing_judge_runner(prompt, model, sampling, timeout_s):
+        raise RuntimeError("judge model unavailable")
+
+    test_case = {
+        "category": "reasoning",
+        "prompt": "Is 2+2 equal to 4?",
+        "expected": {},
+        "rubric": {},
+        "eval": {"method": "llm_judge", "params": {"judge_prompt": "Check correctness."}},
+    }
+
+    result = evaluate(test_case, "Yes, 4.", failing_judge_runner, {})
+
+    assert result["final_score"] == 0.0
+    assert "evaluation_error" in result["failure_tags"]
+    assert any(tag.startswith("error_") for tag in result["failure_tags"])
+    assert "judge model unavailable" in result["score_detail"]["error"]
 
 
 def test_evaluate_python_exec_with_markdown():
