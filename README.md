@@ -1,5 +1,7 @@
 > Archived 2026-09. The LLM judge has two defects: the model's response is pasted verbatim into the judge prompt (`analyzers/evaluator.py:103`), and the score parser takes the first number the regex finds, then falls back to keywords where `correct` also matches `incorrect` (`analyzers/evaluator.py:119-131`).
+>
 > Evaluation work continues in [agent-shield](https://github.com/Chunduri-Aditya/agent-shield).
+>
 > Kept for the failed judge call test pattern: a judge exception surfaces as a tagged `evaluation_error` with a 0.0 score, never a silent 0.5 (`tests/test_evaluator.py:125-145`).
 
 # 🧪 Model Behavior Lab
